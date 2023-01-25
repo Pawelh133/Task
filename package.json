@@ -10,11 +10,25 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "axios": "^1.2.4",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-detect-click-outside": "^1.1.7",
     "react-dom": "^18.2.0",
+    "react-flag-icon-css": "^1.0.25",
+    "react-hook-form": "^7.42.1",
+    "react-input-mask": "^3.0.0-alpha.2",
+    "react-query": "^3.39.2",
     "react-scripts": "5.0.1",
+    "styled-components": "^5.3.6",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.191",
+    "@types/react-flag-icon-css": "^1.0.5",
+    "@types/react-input-mask": "^3.0.2",
+    "@types/styled-components": "^5.1.26"
   },
   "scripts": {
     "start": "react-scripts start",

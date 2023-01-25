@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import SolutionPhonesModal from './SolutionPhonesModal/SolutionPhonesModal';
+import SolutionTypescript from './SolutionTypescript/SolutionTypescript';
+import GlobalStyleProvider from './styles/globalStyles';
+
+type TSolutions = 'typedFreeze' | 'phonesModal';
 
 function App() {
+  const queryClient = new QueryClient();
+  const [selectedTask, setSelectedTask] = useState<TSolutions>('typedFreeze');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <GlobalStyleProvider />
+      <div>
+        <button onClick={() => setSelectedTask('typedFreeze')}>
+          TypedFreeze
+        </button>
+        <button onClick={() => setSelectedTask('phonesModal')}>
+          PhonesModal
+        </button>
+        {selectedTask === 'typedFreeze' ? (
+          <SolutionTypescript />
+        ) : (
+          <SolutionPhonesModal />
+        )}
+      </div>
+    </QueryClientProvider>
   );
 }
 
