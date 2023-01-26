@@ -35,6 +35,7 @@ export const InputStyled = styled(ReactInputMask)`
 
   &:focus {
     outline: none;
+    border: ${pxToRem(1)} solid #5870E0;
   }
 `;
 

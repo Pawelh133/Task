@@ -19,6 +19,7 @@ export const InputStyled = styled.input`
   border: 0;
   padding: ${pxToRem(6)};
   width: ${pxToRem(400)};
+  border-bottom: ${pxToRem(1)} solid #e4e4eb;
 
   &:focus {
     outline: none;

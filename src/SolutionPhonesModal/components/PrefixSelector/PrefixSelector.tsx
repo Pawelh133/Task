@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 import { Controller } from 'react-hook-form';
 import ListItem from '../ListItem/ListItem';
@@ -15,8 +15,15 @@ const PrefixSelector: FC<PrefixSelectorProps> = ({
   isLoading,
   control,
   prefixData,
+  setValue,
 }): JSX.Element | null => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setTimeout(() => setValue('searchPhrase', ''), 300); // setTimeout for correct animation purposes.
+    }
+  }, [isOpen, setValue]);
 
   const handleClickOutside = () => {
     setIsOpen(false);

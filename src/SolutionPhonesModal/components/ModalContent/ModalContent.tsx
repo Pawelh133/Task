@@ -19,6 +19,7 @@ import {
 
 const ModalContent: FC<IModalContentProps> = ({
   control,
+  setValue,
   watch,
   onSave,
   onClose,
@@ -53,6 +54,7 @@ const ModalContent: FC<IModalContentProps> = ({
         <InputContainerStyled>
           <PrefixSelector
             control={control}
+            setValue={setValue}
             prefixData={filteredPrefixData}
             isLoading={isLoading}
           />

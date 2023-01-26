@@ -14,9 +14,10 @@ const SolutionPhonesModal = (): JSX.Element => {
     prefixValue: { code: '', prefix: '', name: '' },
   });
 
-  const { control, reset, watch, handleSubmit } = useForm<IModalState>({
-    defaultValues: currentModalState,
-  });
+  const { control, reset, watch, handleSubmit, setValue } =
+    useForm<IModalState>({
+      defaultValues: currentModalState,
+    });
 
   const onCancel = () => {
     reset(currentModalState);
@@ -36,6 +37,7 @@ const SolutionPhonesModal = (): JSX.Element => {
       <Modal open={isOpen} onClose={onCancel}>
         <ModalContent
           control={control}
+          setValue={setValue}
           watch={watch}
           onSave={handleSubmit(onSave)}
           onClose={onCancel}

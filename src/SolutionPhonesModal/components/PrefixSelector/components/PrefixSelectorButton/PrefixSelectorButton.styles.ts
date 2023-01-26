@@ -16,6 +16,10 @@ export const PrefixSelectorButtonStyled = styled.button`
   padding: ${pxToRem(12)};
   ${flexFn('flex-start')}
   gap: ${pxToRem(6)};
+
+  &:focus {
+    border: ${pxToRem(1)} solid #5870E0;
+  }
 `;
 
 export const ArrowStyled = styled.img`
