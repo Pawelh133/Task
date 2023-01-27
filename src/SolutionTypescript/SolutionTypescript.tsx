@@ -1,59 +1,26 @@
-import { cloneDeep, isEmpty } from 'lodash';
-import { ITreeElement, TTreeElementType } from './Solution.types';
+import { IInput, TDeepReadonly, TObjectType } from './Solution.types';
 
 const SolutionTypescript = (): JSX.Element => {
-  const setLeafTypedValue = (leaf: string) => {
-    if (['true', 'false'].includes(leaf)) return leaf === 'true';
-    if (/^\d+$/.test(leaf)) return parseInt(leaf);
-
-    return leaf;
+  const typedFreeze = <T,>(
+    obj: TObjectType<T>
+  ): TDeepReadonly<TObjectType<T>> => {
+    return Object.freeze(obj);
   };
 
-  const setUpTreeElement = (element: TTreeElementType): TTreeElementType => {
-    if (element) {
-      if (typeof element === 'function') {
-        return setLeafTypedValue(element());
-      }
-
-      if (typeof element === 'string') {
-        return setLeafTypedValue(element);
-      }
-
-      if (typeof element === 'object' && !isEmpty(element)) {
-        Object.keys(element).forEach((elementNode) => {
-          type TKeyType = keyof TTreeElementType;
-
-          element[elementNode as TKeyType] = setUpTreeElement(
-            element[elementNode as TKeyType]
-          );
-        });
-      }
-    }
-
-    return element;
-  };
-
-  const typedFreeze = (tree: ITreeElement) => {
-    const treeCopy = cloneDeep(tree);
-
-    return Object.freeze(setUpTreeElement(treeCopy));
-  };
-
-  const input = {
+  const input: IInput = {
     key1: {
-      key2: 'some text 1',
-      key3: {
-        key4: '1',
-        key6: 'true',
-        key7: { key8: () => '56', key9: 'false' }, // key8 will be not displayed because of function.
+      key2: 'string 1',
+      key3(arg) {
+        return arg;
       },
+      key4: 'elo',
     },
-    key11: 'some text 2',
-    key12: {},
-    key13: null,
+    key5: { key6: 'string 4' },
+    key7: 'string 5',
+    key8: 'string 6',
   };
 
-  const output = typedFreeze(input);
+  const output = typedFreeze<IInput>(input);
 
   return (
     <pre style={{ display: 'flex', flexDirection: 'column', gap: 100 }}>
